@@ -1,0 +1,23 @@
+
+
+
+@media (max-width:768px){
+        .landing-main-div{
+            display: flex;
+            flex-direction: column;
+        }
+        .landing-welcome-section{
+            margin: 0 2rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+       .categories{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+       }
+       .landing-categories-div img{
+        width: 20vh;
+        height: 20vh;
+       }
+}
