@@ -10,7 +10,7 @@ const SingleProduct = () => {
   // Fetch the selected product when the component mounts or when the "productId" changes
   useEffect(() => {
     getProduct(id);
-  }, [id]);
+  }, [id,getProduct]);
 
   // Show loading message while fetching data
   if (!selectedProduct) {
