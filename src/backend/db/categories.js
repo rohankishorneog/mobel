@@ -1,27 +1,26 @@
 import { v4 as uuid } from "uuid";
 
-/**
- * Category Database can be added here.
- * You can add category of your wish with different attributes
- * */
-
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "chairs",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "A collection of beautifully crafted chairs that add elegance and comfort to your living spaces.",
+    imageUrl: "https://images.unsplash.com/photo-1581541234269-03d5d8576c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1092&q=80",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
+    categoryName: "sofas",
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "Discover luxurious sofas designed to create a cozy and stylish ambiance in your home.",
+    imageUrl: "https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1109&q=80",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "lamps",
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+      "Illuminate your rooms with our exquisite lamp designs, blending aesthetics with functionality.",
+    imageUrl: "https://img.freepik.com/free-vector/vector-set-floor-table-lamps-with-black-nightstand-isolated-white-background_1284-48473.jpg?w=900&t=st=1690319164~exp=1690319764~hmac=bb55452d06e4173f6070303aac170711af258101597251cb1025b03cb95726b0",
   },
 ];
+ 
