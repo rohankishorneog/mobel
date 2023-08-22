@@ -1,0 +1,17 @@
+.checkout-item-div{
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: space-around;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2% 0%;
+}
+.checkout-item-img{
+    width:4rem;
+}
+
+.total-price-div{
+    display: flex;
+    justify-content: center;
+
+}
