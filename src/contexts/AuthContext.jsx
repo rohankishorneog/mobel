@@ -10,18 +10,18 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState(null);
 
-    const signup = async ({ firstName, lastName, username, password }) => {
+    const signup = async ({ firstName, lastName, username,email, password }) => {
         try {
             const response = await axios.post(`/api/auth/signup`, {
                 firstName,
                 lastName,
+                email,
                 username,
                 password
             });
         
             if (response.status === 201) {
                 const { createdUser, encodedToken } = response.data;
-
                 setLoggedInUser(createdUser);
                 localStorage.setItem('token', encodedToken);
                 toast.success('Signup successfull');
@@ -34,12 +34,14 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
-    const login = async ({ username, password }) => {
+    const login = async ({ email, password }) => {
+        console.log(`login ${email} ${password}`)
         try {
             const response = await axios.post(`/api/auth/login`, {
-                username,
+                email,
                 password
             });
+            console.log(response)
             if (response.status === 200) {
                 const { foundUser, encodedToken } = response.data;
                 console.log(foundUser)
@@ -50,6 +52,7 @@ export const AuthContextProvider = ({ children }) => {
 
         } catch (error) {
             toast.error(error);
+            console.log(error);
         }
     };
     const logout=()=>{
