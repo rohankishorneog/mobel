@@ -5,7 +5,10 @@ export const ProductContext=createContext()
 
 export const ProductContextProvider=({children})=>{
     const [product,setProduct] = useState([])
+    const [categories,setCategories] = useState([])
     const [selectedProduct,setSelectedProduct] = useState([])
+    const[productsByCategory,setProductsByCategory] = useState([])
+    const [selectedCategory,setSelectedCategory] = useState(null)
     const[isLoading, setIsloading]=useState(true)
     const [error,setError]=useState(null)
 
@@ -13,12 +16,14 @@ export const ProductContextProvider=({children})=>{
     //to get product
     
     useEffect(()=>{
-        const getProduct=async()=>{
+        const getProducts=async()=>{
 
             try {
                const response= await axios.get(`/api/products`) 
+               console.log(response.data.products)
                if(response.status===200){
                 setProduct(response.data.products)
+                console.log(product)
                }else{
                 setError(response.message)
                }
@@ -30,8 +35,9 @@ export const ProductContextProvider=({children})=>{
                 setIsloading(false)
             }
         }
-        getProduct()
+        getProducts()
     },[])
+    console.log(product)
     
   const getProduct=async(id)=>{
     console.log(id)
@@ -52,9 +58,44 @@ export const ProductContextProvider=({children})=>{
       }
   }
 
+  //to get the categories
+  useEffect(()=>{
+    const getCategories= async()=>{
+      try {
+        const response= await axios.get(`/api/categories`)
+        console.log(response)
+        if(response.status===200){
+            setCategories(response.data.categories)
+
+        }
+        
+      } catch (error) {
+        console.log(error)
+        
+      }
+    }
+    getCategories()
+
+  },[])
+
+  const getCategoryByID=async(id)=>{
+    try {
+      const response = await axios.get(`/api/categories/${id}`)
+      console.log(response)
+      setSelectedCategory(response.data.category)
+      
+    } catch (error) {
+      
+    }
+  }
+
+
+  
+
+
 
     return(
-        <ProductContext.Provider value={{product, isLoading, error, getProduct, selectedProduct}}>
+        <ProductContext.Provider value={{product, isLoading, error, getProduct, selectedProduct,categories,getCategoryByID, selectedCategory, productsByCategory, setProductsByCategory}}>
             {children}
         </ProductContext.Provider>
     )
