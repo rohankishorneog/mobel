@@ -8,8 +8,8 @@ const Landing = () => {
         <section className='landing-welcome-section'> 
                 <img className="new-collection-img"src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80" alt="new collection" />
                 <div className='new-collection-texts'>
-                    <h3>okayyyyy</h3>
-                    <p>abraca dabra</p>
+                    <h3>Exquisite Collections</h3>
+                    <p>Find the most aesthetic furniture here</p>
                     <button>Shop the Collection</button>
 
                 </div>
