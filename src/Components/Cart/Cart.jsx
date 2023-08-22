@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { Link } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import "./Cart.css"
 import {GrAdd, GrCart, GrTrash  } from "react-icons/gr";
 

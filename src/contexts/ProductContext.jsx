@@ -36,6 +36,7 @@ export const ProductContextProvider=({children})=>{
             }
         }
         getProducts()
+        //eslint-disable-next-line 
     },[])
     console.log(product)
     

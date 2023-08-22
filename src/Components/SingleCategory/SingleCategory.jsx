@@ -7,15 +7,15 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css'; 
 
 import './SingleCategory.css';
-import NavBar from '../NavBar/NavBar';
+
 
 
 const SingleCategory = () => {
   const { categoryName } = useParams();
   const { product } = useContext(ProductContext);
   const [productsByCategory, setProductsByCategory] = useState([]);
-  const [sortBy, setSortBy] = useState(''); // Default sorting option
-  const [priceRange, setPriceRange] = useState([0, 100000]); // Default price range
+  const [sortBy, setSortBy] = useState('');
+  const [priceRange, setPriceRange] = useState([0, 100000]); 
   const [filtered, setFiltered] = useState(false);
   const [display,setDisplay]=useState(false)
 

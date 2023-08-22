@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import './Landing.css'
-import NavBar from '../../Components/NavBar/NavBar'
 import { Link } from 'react-router-dom'
 import { ProductContext } from '../../contexts/ProductContext'
 
