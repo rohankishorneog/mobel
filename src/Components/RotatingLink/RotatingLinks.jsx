@@ -4,8 +4,9 @@ import "./RotatingLinks.css"
 
 const RotatingLinks = () => {
   const links = [
-    { id: 1, to: '/newCollection', label: 'NEW' },
-    { id: 2, to: '/rugCollection', label: 'RUG' }
+    { id: 1, to: '/categories/chairs', label: 'LOOK INTO SOME CHAIRS' },
+    { id: 2, to: '/categories/sofas', label: 'SOFAS FOR COMFORT' },
+    { id: 2, to: '/categories/lamps', label: 'LAMPS TO IGNITE MIND' }
   ];
 
   const [currentLinkIndex, setCurrentLinkIndex] = useState(0);
@@ -13,7 +14,7 @@ const RotatingLinks = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentLinkIndex((prevIndex) => (prevIndex + 1) % links.length);
-    }, 5000); 
+    }, 3000); 
 
     return () => {
       clearInterval(intervalId); 
@@ -22,7 +23,7 @@ const RotatingLinks = () => {
 
   return (
     <div className='RotatingLinks-main-div'>
-      <Link to={links[currentLinkIndex].to}>{links[currentLinkIndex].label}
+      <Link to={links[currentLinkIndex].to} className='RotatingLinks-main-div-link'> {links[currentLinkIndex].label}
       </Link>
     </div>
   );
