@@ -1,0 +1,8 @@
+.cart-button{
+    width: 50vh;
+    height: 6vh;
+    background-color:#385678 ;
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+}
