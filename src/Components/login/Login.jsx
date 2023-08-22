@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -25,29 +25,34 @@ const Login = () => {
     e.preventDefault();
     console.log(formData);
     await login(formData);
-    navigate('/home');
+    navigate('/cart');
   };
 
   const handleLoginAsAdarshBalika = async () => {
-    await login({ username: 'adarshbalika', password: 'adarshBalika123' });
-    navigate('/home');
+    await login({ email: 'adarshbalika@gmail.com', password: 'adarshbalika' });
+    navigate('/cart');
   };
 
 
   return (
-    <div>
+    <div className='login-main-div'>
+      
       <form className="login-form" id="loginForm" onSubmit={handleLogin}>
-        <label>
+        <div className='login-form-contents'> 
+        
+        <label className='login-labels'>
+          <span className='login-label-text'>Email address</span>
           <input
-            type="text"
-            placeholder="username"
-            name="username"
-            value={formData.username}
+            type="email"
+            placeholder="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
         </label>
-        <label>
+        <label className='login-labels'>
+          <span className='login-label-text'>Password</span>
           <input
             type="password"
             placeholder="password"
@@ -57,10 +62,13 @@ const Login = () => {
             required
           />
         </label>
-        <button type="submit">Login</button>
+        </div>
+
+       
+        <button type="submit">LOGIN</button>
         
       </form>
-      <button className="login-default"onClick={handleLoginAsAdarshBalika}>Login as adarshbalika</button>
+      <button className="login-default"onClick={handleLoginAsAdarshBalika}>LOGIN AS ADARSHBALIKA</button>
      
     </div>
   );
