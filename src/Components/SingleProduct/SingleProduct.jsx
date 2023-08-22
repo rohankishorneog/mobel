@@ -1,26 +1,24 @@
 import React, { useContext, useEffect   } from "react";
-import { Link, useParams } from "react-router-dom"; // Import the useParams hook
+import { useParams } from "react-router-dom"; 
 import './SingleProduct.css'
-import { ProductContext } from "../../contexts/ProductContext"; // Make sure to import the context from the correct file
+import { ProductContext } from "../../contexts/ProductContext";
 import { Cartbutton } from "../Buttons/CartButton/CartButton";
 import WishListButton from "../Buttons/WishlistButton/WishListButton";
-import NavBar from "../NavBar/NavBar";
 
 const SingleProduct = () => {
-  const { id} = useParams(); // Access the "productId" from the URL parameter
+  const { id} = useParams();
   const { selectedProduct, getProduct } = useContext(ProductContext);
 
-  // Fetch the selected product when the component mounts or when the "productId" changes
+
   useEffect(() => {
     getProduct(id);
   }, [id]);
 
-  // Show loading message while fetching data
+ 
   if (!selectedProduct) {
     return <div>Loading...</div>;
   }
 
-  // Display the product information once data is available
   return (
     <div>
     <div className="single-product-main-div">
