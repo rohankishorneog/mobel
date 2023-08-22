@@ -7,8 +7,10 @@ const SignupPage = () => {
   return (
     <div className="signup-container">
       <div className="signup-card">
-        <SignUp />
+        <h1>BECOME AND INSIDER</h1>
         <Link to="/login">Already have an account?</Link>
+        <SignUp />
+        
       </div>
     </div>
   );

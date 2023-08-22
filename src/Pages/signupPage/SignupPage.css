@@ -1,36 +1,13 @@
-.signup-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+.signup-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  .signup-card {
-    background-color: #1d1a1a;
-    border-radius: 12px;
-    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
-    padding: 30px;
-    width: 400px;
-    text-align: center;
-  }
-  
-  .signup-card h2 {
-    font-size: 2.5rem;
-    color: #fceaea;
-    margin-bottom: 20px;
-  }
-  
-  .signup-card form {
-    margin-bottom: 30px;
-  }
-  
-  .signup-card a {
-    color: #b82626;
-    text-decoration: none;
-    font-size: 1.1rem;
-  }
-  
-  .signup-card a:hover {
-    text-decoration: underline;
-  }
-  
+}
+
+.signup-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
