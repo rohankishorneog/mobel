@@ -1,33 +1,24 @@
 import React, { useContext, useState } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import { Link } from "react-router-dom";
-import  WishListButton  from "../Buttons/WishlistButton/WishListButton";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css'; 
+import WishListButton from "../Buttons/WishlistButton/WishListButton";
+import { FaFilter } from "react-icons/fa";
 import { Cartbutton } from "../Buttons/CartButton/CartButton";
+import "./AllProducts.css"
 
 const AllProducts = () => {
   const { product, isLoading, error } = useContext(ProductContext);
+  const [display, setDisplay]=useState(false)
 
-  const initialFilterState = null; // Set the initial filter state to null
 
-  const [filter, setFilter] = useState(initialFilterState);
-  const [showSortingOptions, setShowSortingOptions] = useState(false);
-
-  const handleFilterChange = (event) => {
-    const { name, value } = event.target;
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      [name]: value,
-    }));
-  };
-
-  const handleToggleSortingOptions = () => {
-    setShowSortingOptions((prevState) => !prevState);
-  };
-
-  const handleClearFilters = () => {
-    setFilter(initialFilterState);
-    setShowSortingOptions(false);
-  };
+  const [filter, setFilter] = useState({
+    lowPrice: 0,
+    highPrice: 100000,
+    categoryName: "all",
+    sortBy: "",
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -37,81 +28,117 @@ const AllProducts = () => {
     return <p>Error: {error}</p>;
   }
 
-  const filteredProducts = product.filter((item) => {
-    if (!filter) {
-      return true; // Show all products when no filter is selected
-    }
-    const price = parseFloat(item.price);
-    const categoryMatch =
-      !filter.category || filter.category === "all" || filter.category === item.category;
-    const priceMatch =
-      price >= parseFloat(filter.lowPrice) && price <= parseFloat(filter.highPrice);
-    const ratingMatch = parseFloat(item.rating) >= parseFloat(filter.rating);
-    return categoryMatch && priceMatch && ratingMatch;
-  });
+  const handleFilterChange = (name, value) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [name]: value,
+    }));
+  };
+
+  const handleClearFilters = () => {
+    setFilter({
+      lowPrice: 0,
+      highPrice: 100000,
+      categoryName: "all",
+      sortBy: "",
+    });
+  };
+
+  let filteredProducts = [...product];
+
+  if (filter.categoryName !== "all") {
+    filteredProducts = filteredProducts.filter(
+      (item) => item.categoryName === filter.categoryName
+    );
+  }
+
+  filteredProducts = filteredProducts.filter(
+    (item) =>
+      item.price >= filter.lowPrice && item.price <= filter.highPrice
+  );
+
+  if (filter.sortBy === "priceLowToHigh") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (filter.sortBy === "priceHighToLow") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (filter.sortBy === "rating") {
+    filteredProducts.sort((a, b) => b.rating - a.rating);
+  }
+
+
+  const handleDisplay=() => {
+    setDisplay(curr=>!curr)
+  }
 
   return (
     <div>
-      <h2>All Products</h2>
-      <button onClick={handleToggleSortingOptions}>
-        {showSortingOptions ? "Hide Sorting Options" : "Show Sorting Options"}
-      </button>
-      {showSortingOptions && (
-        <div>
-          <label>
-            Low Price:
-            <input
-              type="number"
-              name="lowPrice"
-              value={filter ? filter.lowPrice : ""}
-              onChange={handleFilterChange}
-            />
-          </label>
-          <label>
-            High Price:
-            <input
-              type="number"
-              name="highPrice"
-              value={filter ? filter.highPrice : ""}
-              onChange={handleFilterChange}
-            />
-          </label>
-          <label>
-            Category:
-            <select
-              name="category"
-              value={filter ? filter.category : ""}
-              onChange={handleFilterChange}
-            >
-              <option value="">All</option>
-              <option value="chair">Chair</option>
-              <option value="sofa">Sofa</option>
-              <option value="lamp">Lamp</option>
-            </select>
-          </label>
-          <label>
-            Rating:
-            <input
-              type="number"
-              name="rating"
-              value={filter ? filter.rating : ""}
-              onChange={handleFilterChange}
-            />
-          </label>
-          <button onClick={handleClearFilters}>Clear Filters</button>
+        <div className='sorting-bar'>
+        <button onClick={handleDisplay}>{display?"x":<FaFilter size={20}/>}</button>
         </div>
-      )}
-      <ul>
+      { display && <div>
+    
+      <div>
+        <label>
+          Price Range:
+          <Slider
+            min={0}
+            max={100000}
+            value={[filter.lowPrice, filter.highPrice]}
+            onChange={(newRange) => {
+              handleFilterChange("lowPrice", newRange[0]);
+              handleFilterChange("highPrice", newRange[1]);
+            }}
+            range
+          />
+          Min: Rs{filter.lowPrice} - Max: Rs{filter.highPrice}
+        </label>
+        <label>
+          Category:
+          <select
+            name="categoryName"
+            value={filter.categoryName}
+            onChange={(e) => handleFilterChange("categoryName", e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="chairs">Chairs</option>
+            <option value="sofas">Sofas</option>
+            <option value="lamps">Lamps</option>
+          </select>
+        </label>
+        <label>
+          Sort By:
+          <select
+            name="sortBy"
+            value={filter.sortBy}
+            onChange={(e) => handleFilterChange("sortBy", e.target.value)}
+          >
+            <option value="">None</option>
+            <option value="priceLowToHigh">Price: Low to High</option>
+            <option value="priceHighToLow">Price: High to Low</option>
+            <option value="rating">Rating</option>
+          </select>
+        </label>
+        <button onClick={handleClearFilters}>Clear Filters</button>
+      </div>
+
+      </div>}
+      
+      <ul className="all-products-list">
         {filteredProducts.map((item) => (
-            <Link to={`/products/${item._id}`}>
-          <li key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.price}</p>
-            {/* Add other product details you want to display */}
-            <WishListButton/>
-            <Cartbutton/>
-          </li>
-          </Link>
+          
+            <li className="all-product-item">
+              <Link to={`/products/${item._id}`} key={item._id}>
+              <img src={item.imageUrl} alt={item.title} />
+              </Link>
+              <p>{item.title}</p>
+              <p>Rs{item.price}</p>
+              <div className="all-product-button">
+              <WishListButton  newProduct={item}/>
+              <Cartbutton  newProduct={item} />
+              </div>
+              
+            </li>
+      
         ))}
       </ul>
     </div>
