@@ -1,0 +1,73 @@
+.tally{
+    display: flex;
+    margin-top: 3vh;
+    
+}
+.tally-div{
+    border-bottom: 0.5px solid black;
+    border-top: 0.5px solid black;
+}
+.tally-product-div{
+    border-bottom: 0.5px solid black;
+}
+
+.tally-item{
+    flex: 2;
+    padding-left: 2%;
+}
+.tally-qty{
+    flex: 1;
+}
+.tally-price{
+    flex: 1;
+}
+.item-item{
+    display: flex;
+    align-items: center;
+}
+.item-price{
+    display: flex;
+    align-items: center;
+}
+.item-price  button{
+    margin: 2%;
+    border: none;
+    background-color: white;
+}
+
+.item-qty{
+    display: flex;
+    align-items: center;
+}
+.item-qty  button{
+    margin: 2%;
+    border: none;
+    background-color: white;
+}
+.cart-main-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cart-main-div h4{
+    text-align: center;
+    color: #2A405A;
+}
+.checkout-button-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    
+}
+.cart-checkout-button{
+    width: 30vh;
+    height:6vh;
+    border: none;
+    color: whitesmoke;
+    background-color:#2A405A ;
+    font-weight: 600;
+    font-family: cursive;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
