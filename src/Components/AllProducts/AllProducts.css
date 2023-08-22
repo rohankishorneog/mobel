@@ -1,0 +1,33 @@
+.all-product-item img{
+    width: 20vh;
+    height: 30vh;
+}
+
+.all-product-item{
+    margin: 3%;
+    width: 20vh;
+    height: 50vh;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.all-product-button{
+    display: flex;
+}
+
+.all-product-button .cart-button{
+    width: 10vh;
+    height: 6vh;
+    background-color: #385678;
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.all-products-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0;
+}
