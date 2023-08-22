@@ -11,6 +11,7 @@ const SignUp = () => {
     firstName: '',
     lastName: '',
     username: '',
+    email:'',
     password: '',
   });
 
@@ -25,12 +26,12 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await signup(formData);
-    navigate('/editProfile');
+    navigate('/');
   };
 
   return (
     <div>
-      <h2>Signup</h2>
+      
       <form className="signup-form" id="signupForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name:</label>
@@ -66,6 +67,17 @@ const SignUp = () => {
           />
         </div>
         <div>
+          <label htmlFor="email">email</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -76,7 +88,10 @@ const SignUp = () => {
             required
           />
         </div>
+        <div className='signup-button-div'>
         <button type="submit">Signup</button>
+        </div>
+        
       </form>
     </div>
   );
