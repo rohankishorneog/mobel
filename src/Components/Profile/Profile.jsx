@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router';
-import { AddressContext } from '../../contexts/AddressContext';
 
 const Profile = () => {
-  const {loggedInUser}=useContext(AuthContext)
-  const { address } = useContext(AddressContext);
+  const { loggedInUser } = useContext(AuthContext);
   const navigate=useNavigate()
   const handleAddAddress=()=>{
     navigate('/address')
@@ -25,10 +23,10 @@ const Profile = () => {
       <div>
         <h2>Addresses:</h2>
         {/* Check if the user has any addresses */}
-        {address.length > 0 ? (
+        {loggedInUser?.address.length > 0 ? (
           <ul>
             {/* Loop through user's addresses and display each address */}
-            {address.map((address, index) => (
+            {loggedInUser.address.map((address, index) => (
               <li key={index}>
                 {/* Display the address details */}
                 <p>First Name: {address.firstName}</p>

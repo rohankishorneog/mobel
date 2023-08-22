@@ -35,6 +35,7 @@ export const signupHandler = function (schema, request) {
       createdAt: formatDate(),
       updatedAt: formatDate(),
       ...rest,
+      address:[],
       cart: [],
       wishlist: [],
     };

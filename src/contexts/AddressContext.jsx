@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const AddressContext=createContext();
 
@@ -6,14 +7,14 @@ export const AddressContext=createContext();
 
 
 export const AddressContextProvider=({children})=>{
-    const [address,setAddress]=useState([])
+    const {setLoggedInUser}=useContext(AuthContext)
     const [selectedAddress, setSelectedAddress]=useState(null)
 
     const addAddress=(newAddress)=>{
-    setAddress((curr) => ([
-        ...curr,
-        newAddress
-    ]))
+    setLoggedInUser((user) => ({
+        ...user,
+        address: [...user.address, newAddress],
+      }))
     }
     const selectAddress=(address)=>{
         setSelectedAddress(address)
@@ -21,7 +22,7 @@ export const AddressContextProvider=({children})=>{
 
 
     return(
-        <AddressContext.Provider value={{address,selectedAddress,addAddress,selectAddress}}>
+        <AddressContext.Provider value={{selectedAddress,addAddress,selectAddress}}>
             {children}
         </AddressContext.Provider>
     )
