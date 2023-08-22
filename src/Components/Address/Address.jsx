@@ -1,11 +1,9 @@
 import React, { useContext, useState} from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 import './Address.css'
 import { AddressContext } from '../../contexts/AddressContext';
 
 const Address = () => {
-  const { loggedInUser } = useContext(AuthContext);
-  const {addAddress,selectAddress,selectedAddress}=useContext(AddressContext)
+  const {address,addAddress,selectAddress,selectedAddress}=useContext(AddressContext)
   const [showForm, setShowForm]=useState(false)
 
 
@@ -42,7 +40,7 @@ const Address = () => {
     };
 
     addAddress(newAddress)
-
+    alert(newAddress)
     selectAddress(newAddress);
   };
 
@@ -52,14 +50,14 @@ const Address = () => {
 
   return (
     <div>
-      {loggedInUser.address.length === 0 && (
+      {address.length === 0 && (
         <div className='address-form-div'> 
           <p>No addresses found.</p>
         
         </div>
       )}
 
-      {loggedInUser.address.length > 0 && (
+      {address.length > 0 && (
         <div>
           {selectedAddress ? (
             <div>
@@ -79,7 +77,7 @@ const Address = () => {
             <div>
               <p>Choose an address:</p>
               <ul>
-                {loggedInUser.address.map((address, index) => (
+                {address.map((address, index) => (
                   <li key={index} onClick={() => handleSelectAddress(address)}>
                     {address.areaName}
                   </li>
