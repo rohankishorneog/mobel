@@ -1,3 +1,28 @@
+@media(min-width: 768px) {
+    .single-product-main-div{
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+    .single-product-card{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .single-product-card img{
+        margin-top: 2%;
+        width: 50vh;
+        height: 50vh;
+        margin-bottom: 2%;
+    }
+    .add-buttons{
+        display: flex;
+        flex-direction: column;
+        
+    }
+}
+
 @media (max-width:768px){
     .single-product-main-div{
         display: flex;
