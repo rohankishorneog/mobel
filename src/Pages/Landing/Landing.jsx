@@ -20,8 +20,9 @@ const Landing = () => {
                 </div>
 
         </section>
-
+        <h5 style={{textAlign:"center"}}>CATEGORIES</h5>
         <section className='categories'>
+            
             {
                 categories.map(category => 
                     <div className='landing-categories-div' key={category._id}>
